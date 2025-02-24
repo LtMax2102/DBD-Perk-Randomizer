@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+
+<html>
+
+	<head>
+		<title>DBD Perk Randomizer - Killer</title>
+		<link rel="icon" type="image/x-icon" href="images/role_icons/killer.webp">
+		<link rel="stylesheet" href="styles.css">
+
+	</head>
+
+	<body>
+		<!-- Left sidebar - killers -->
+		<div class="sidebar" id="k">
+			<p id="close">Close</p>
+			<div class="char-box"></div>
+		</div>
+
+		<!-- Right sidebar - perks -->
+		<div class="sidebar" id="p" style="right: 0;">
+			<p id="close">Close</p>
+			<div class="perk-box"></div>
+		</div>		
+
+		<header>
+			<div class="header-item" id="left">
+				<img src="images/role_icons/killer.webp">
+				<p>Open Killer Menu</p>
+			</div>
+			<div class="header-item" id="right">
+				<p>Open Perk Menu</p>
+				<img src="images/role_icons/perk.webp">
+			</div>
+		</header>
+
+		<div class="perk-holder"></div>
+
+		<div style="display: flex; justify-content: center; margin-top: 4em;">
+			<button onclick="randomize()">
+				<img src="images/blighted_crow.webp">
+				<p>Randomize Perks</p>
+				<img src="images/blighted_crow.webp">
+			</button>
+		</div>
+
+	</body>
+
+
+	<template>
+		<div class="perk">
+			<img id="image">
+			<div class="popout">
+				<div id="header">
+					<h1 id="name"></h1>
+					<h3 id="killer"></h3>
+				</div>
+
+				<div>
+					<p id="main"></p>
+
+					<ul></ul>
+
+					<p id="quote"></p>
+				</div>
+			</div>
+		</div>
+	</template>
+
+	<template>
+		<div class="item">
+			<img>
+			<h3>Name</h3>
+			<p id="state"></p>
+			<button>Enable / Disable</button>
+		</div>
+	</template>
+
+	<script src="killer.js"></script>
+
+</html>

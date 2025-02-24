@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto');
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: "Roboto", sans-serif;
+}
+
+body {
+	overflow: hidden;
+	background: #1a1a1a;
+}
+
+.sidebar {
+	width: 0;
+	min-height: 100vh;
+	height: auto;
+	background: black;
+	position: absolute;
+	display: block;
+	transition: 500ms;
+	color: white;
+	overflow-y: scroll;
+}
+
+.sidebar button {
+	width: auto;
+}
+
+.sidebar > p {
+	display: none;
+}
+
+.sidebar > div {
+	display: none;
+}
+
+.char-box {
+	grid-template-columns: repeat(4, auto);
+    height: 100vh;
+    scroll-behavior: auto;
+	justify-content: center;
+	grid-gap: 2em;
+}
+
+.perk-box {
+	grid-template-columns: repeat(4, auto);
+	justify-content: center;
+	grid-gap: 2em;
+}
+
+.item {
+	width: 200px;
+	display: flex;
+	flex-direction: column;
+    padding-bottom: 20px;
+	transition: 500ms;
+}
+
+.item img {
+	width: 200px;
+}
+
+.perk-holder {
+	grid-template-columns: repeat(4, auto);
+	display: grid;
+	align-items: center;
+	justify-content: center;
+	grid-gap: 10em;
+    height: 150px;
+}
+
+.perk {
+	display: flex;
+}
+
+img {
+	width: 150px;
+}
+
+#image:hover ~ .popout {
+	display: block;
+}
+
+.perk #header {
+
+}
+
+button {
+	display: flex;
+	align-items: center;
+	width: 545px;
+	appearance: none;
+	border: none;
+	border: 2px solid #040506;
+	background: #101418;
+	color: white;
+	cursor: pointer;
+}
+
+button:hover {
+	background: #0c0f13;
+}
+
+button img {
+	width: 120px;
+}
+
+button p {
+	font-size: large;
+	text-transform: uppercase;
+	width: 100%;
+}
+
+.perk #name {
+	font-size: 27px;
+	letter-spacing: 1px;
+}
+
+.perk #killer {
+	font-weight: lighter;
+	font-size: unset;
+}
+
+.perk .popout {
+	display: none;
+	position: absolute;
+	margin-left: 100px;
+	background: black;
+	color: white;
+	font-family: 'Arial';
+	padding: 13px;
+	min-width: 525px;
+	box-shadow: 0px 0px 8px 8px rgb(0, 0, 0);
+	opacity: 0.95;
+}
+
+header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.header-item {
+	display: flex;
+	align-items: center;
+	border: 2px solid #040506;
+	border-top: none;
+	background: #101418;
+	user-select: none;
+	cursor: pointer;
+}
+
+.header-item:hover {
+	background: #0c0f13;
+}
+
+#left {
+	border-left: none;
+}
+
+#right {
+	border-right: none;
+}
+
+.header-item img {
+	width: 128px;
+}
+
+.header-item p {
+	text-transform: uppercase;
+	color: white;
+	margin: 20px;
+}
