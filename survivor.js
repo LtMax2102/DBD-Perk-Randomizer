@@ -12,7 +12,7 @@ function manageChildren(children, hide) {
 
 function replace_underscore_on_perk(perk_name) {
     let split_name = perk_name.split("_")
-    let split_keywords = ["boon", "teamwork"]
+    let split_keywords = ["boon", "teamwork", "invocation"]
     
     if (split_keywords.includes(split_name[0])) {
         split_name[0] += ":"
@@ -20,6 +20,14 @@ function replace_underscore_on_perk(perk_name) {
 
     return split_name.join(" ").toUpperCase();
     console.log(perk_name.split("_"))
+}
+
+function search(query) {
+	document.getElementById("k").querySelector(".char-box").innerHTML = ""
+
+    Survivor.all_survivors.forEach((s) => {
+        if (s.display_name.includes(query.toUpperCase())) s.addToSidebar();
+    })
 }
 
 class Perk {
@@ -90,6 +98,8 @@ class Survivor {
 			parent.querySelector("#state").innerHTML = "Enabled: " + this.enabled;
 
 		})
+
+        if (!this.enabled) clone.querySelector(".item").style.background = "#ff000042";
 
 		document.getElementById("k").querySelector(".char-box").appendChild(clone)
 	}
@@ -365,7 +375,6 @@ ada.perk("low_profile")
 ada.perk("reactive_healing")
 ada.perk("wiretap")
 
-
 const rebecca = new Survivor("rebecca_chambers")
 rebecca.perk("better_than_new")
 rebecca.perk("hyperfocus")
@@ -387,7 +396,51 @@ renato.perk("blood_rush")
 renato.perk("teamwork_collective_stealth")
 
 
+const gabriel = new Survivor("gabriel_soma")
+gabriel.perk("made_for_this")
+gabriel.perk("scavenger")
+gabriel.perk("troubleshooter")
 
+const nicolas = new Survivor("nicolas_cage")
+nicolas.perk("dramaturgy")
+nicolas.perk("plot_twist")
+nicolas.perk("scene_partner")
+
+const ellen = new Survivor("ellen_ripley")
+ellen.perk("chemical_trap")
+ellen.perk("light_footed")
+ellen.perk("lucky_star")
+
+const alan = new Survivor("alan_wake")
+alan.perk("boon_illumination")
+alan.perk("champion_of_light")
+alan.perk("deadline")
+
+
+const sable = new Survivor("sable_ward")
+sable.perk("invocation_weaving_spiders")
+sable.perk("strength_in_shadows")
+sable.perk("wicked")
+
+const troupe = new Survivor("the_troupe")
+troupe.perk("bardic_inspiration")
+troupe.perk("mirrored_illusion")
+troupe.perk("still_sight")
+
+const lara = new Survivor("lara_croft")
+lara.perk("finesse")
+lara.perk("hardened")
+lara.perk("specialist")
+
+const trevor = new Survivor("trevor_belmont")
+trevor.perk("exultation")
+trevor.perk("eyes_of_belmont")
+trevor.perk("moment_of_glory")
+
+const taurie = new Survivor("taurie_cain")
+taurie.perk("clean_break")
+taurie.perk("invocation_treacherous_crows")
+taurie.perk("shoulder_the_burden")
 
 // template for characters 
 // const adam = new Survivor("adam_francis")
@@ -397,10 +450,8 @@ renato.perk("teamwork_collective_stealth")
 
 window.onload = () => {
 	addRandomOnInit();
-	
 
-
-	Survivor.all_survivors.forEach((e) => {
+    Survivor.all_survivors.forEach((e) => {
 		e.addToSidebar()
 	})
 }

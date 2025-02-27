@@ -25,14 +25,35 @@ body {
 
 .sidebar button {
 	width: auto;
+    padding: 10px 0;
+    justify-content: center;
+    border: none;
 }
 
 .sidebar > p {
 	display: none;
+    cursor: pointer;
 }
 
 .sidebar > div {
 	display: none;
+}
+
+.search-container {
+    grid-template-columns: 80% 20%;
+    grid-gap: 20px;
+    width: 80%;
+    margin: 20px auto;
+}
+
+.search-container input {
+    border: none;
+    padding: 5px;
+}
+
+.search-container button {
+    width: fit-content;
+    padding: 10px 25px;
 }
 
 .char-box {
@@ -53,8 +74,15 @@ body {
 	width: 200px;
 	display: flex;
 	flex-direction: column;
-    padding-bottom: 20px;
 	transition: 500ms;
+}
+
+.item * {
+    margin-bottom: 10px;
+}
+
+.item *:last-child {
+    margin: 0;
 }
 
 .item img {
@@ -68,6 +96,7 @@ body {
 	justify-content: center;
 	grid-gap: 10em;
     height: 150px;
+    margin-top: 5em;
 }
 
 .perk {
@@ -110,6 +139,7 @@ button p {
 	font-size: large;
 	text-transform: uppercase;
 	width: 100%;
+
 }
 
 .perk #name {
