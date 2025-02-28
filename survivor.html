@@ -40,12 +40,30 @@
 
 		<div class="perk-holder"></div>
 
+		<div class="char-holder">
+			<img src="images/chaos_shuffle.webp">
+			<p>Random Character</p>
+		</div>
+
 		<div style="display: flex; justify-content: center; margin-top: 4em;">
 			<button onclick="randomize()">
 				<img src="images/blighted_crow.webp">
 				<p>Randomize Perks</p>
 				<img src="images/blighted_crow.webp">
 			</button>
+		</div>
+
+		<div class="bottom">
+			<span>
+				<p>Settings</p>
+				<img src="images/arrow.svg">
+			</span>
+			<main>
+				<div class="setting">
+					<button onclick="randomCharToggle(this)">Random Character</button>
+					<p>false</p>
+				</div>
+			</main>
 		</div>
 
 	</body>

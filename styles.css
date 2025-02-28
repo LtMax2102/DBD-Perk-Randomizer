@@ -4,6 +4,7 @@
 	margin: 0;
 	padding: 0;
 	font-family: "Roboto", sans-serif;
+	color: #c8c8c8;
 }
 
 body {
@@ -87,6 +88,13 @@ body {
 
 .item img {
 	width: 200px;
+}
+
+.char-holder {
+	display: none;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 
 .perk-holder {
@@ -200,4 +208,41 @@ header {
 	text-transform: uppercase;
 	color: white;
 	margin: 20px;
+}
+
+.bottom {
+	position: absolute;
+	bottom: 0;
+	transition: 500ms;
+	height: auto;
+	width: 25em;
+	background-color: #101418;
+	border: 2px solid #040506;
+	border-bottom: none;
+	user-select: none;
+}
+
+.bottom span {
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 2px solid black;
+	cursor: pointer;
+}
+
+.bottom span:hover {
+	background: #0c0f13;
+}
+
+.bottom p {
+	font-size: 25px;
+	align-self: center;
+}
+
+.bottom img {
+	width: 40px;
+	transition: 500ms;
+}
+
+.bottom main {
+	display: none;
 }

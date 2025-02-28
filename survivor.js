@@ -1,3 +1,8 @@
+
+// variables for settings and if they're active or not
+let s_active = false;
+let s_randChar = false
+
 function manageChildren(children, hide) {
 	for (let i = 0; i < children.length; i++) {
 		if (hide) {
@@ -22,6 +27,7 @@ function replace_underscore_on_perk(perk_name) {
     console.log(perk_name.split("_"))
 }
 
+// survivor search function
 function search(query) {
 	document.getElementById("k").querySelector(".char-box").innerHTML = ""
 
@@ -73,8 +79,17 @@ class Survivor {
 	}
 
 	perk(name, desc) {
-		let p = new Perk(name, this.display_name, desc);
-		this.perks.push(p);
+		if(Array.isArray(name)) {
+			name.forEach((n) => {
+				let p = new Perk(n, this.display_name, desc);
+				this.perks.push(p);
+			})
+		}
+		else {
+			let p = new Perk(name, this.display_name, desc);
+			this.perks.push(p);
+		}
+
 	}
 
 	addToSidebar() {
@@ -103,6 +118,21 @@ class Survivor {
 
 		document.getElementById("k").querySelector(".char-box").appendChild(clone)
 	}
+}
+
+function randomChar() {
+	let all_sur = [];
+
+	Survivor.all_survivors.forEach((e) => {
+		if (e.enabled) all_sur.push(e);
+	})
+
+	let char = all_sur[Math.floor(Math.random() * all_sur.length)]
+	
+	parent = document.getElementsByClassName("char-holder")[0];
+
+	parent.querySelector("img").src = "images/survivor_icons/" + char.name + ".webp"
+	parent.querySelector("p").innerHTML = char.display_name;
 }
 
 function randomize() {
@@ -150,15 +180,20 @@ function randomize() {
 			}
 		}
 	}
+
+	if (s_randChar) {
+		randomChar();
+	}
+
 }
 
-// Open Killer Menu
+// Open Survivor Menu
 document.querySelectorAll(".header-item")[0].addEventListener("click", () => {
 	document.querySelector("#k").style.width = "50%"
 	manageChildren(document.querySelector("#k").children, false)
 })
 
-// Close Killer Menu
+// Close Survivor Menu
 document.querySelectorAll("#close")[0].addEventListener("click", () => {
 	document.querySelector("#k").style.width = "0%"
 	manageChildren(document.querySelector("#k").children, true)
@@ -216,231 +251,139 @@ let all_perks = []
 
 // All Survivors 
 const dwight = new Survivor("dwight_fairfield")
-dwight.perk("bond")
-dwight.perk("leader")
-dwight.perk("prove_thyself")
+dwight.perk(["bond", "leader", "prove_thyself"])
 
 const meg = new Survivor("meg_thomas")
-meg.perk("adrenaline")
-meg.perk("quick_&_quiet")
-meg.perk("sprint_burst")
+meg.perk(["adrenaline", "quick_&_quiet", "sprint_burst"])
 
 const claudette = new Survivor("claudette_morel")
-claudette.perk("botany_knowledge")
-claudette.perk("empathy")
-claudette.perk("self_care")
+claudette.perk(["botany_knowledge", "empathy", "self_care"])
 
 const jake = new Survivor("jake_park")
-jake.perk("calm_spirit")
-jake.perk("iron_will")
-jake.perk("saboteur")
+jake.perk(["calm_spirit", "iron_will", "saboteur"])
 
 const nea = new Survivor("nea_karlsson")
-nea.perk("balanced_landing")
-nea.perk("streetwise")
-nea.perk("urban_evasion")
+nea.perk(["balanced_landing", "streetwise", "urban_evasion"])
 
 const laurie = new Survivor("laurie_strode")
-laurie.perk("decisive_strike")
-laurie.perk("object_of_obsession")
-laurie.perk("sole_survivor")
+laurie.perk(["decisive_strike", "object_of_obsession", "sole_survivor"])
 
 const ace = new Survivor("ace_visconti")
-ace.perk("ace_in_the_hole")
-ace.perk("open_handed")
-ace.perk("up_the_ante")
+ace.perk(["ace_in_the_hole", "open_handed", "up_the_ante"])
 
 const bill = new Survivor("bill_overbeck")
-bill.perk("borrowed_time")
-bill.perk("left_behind")
-bill.perk("unbreakable")
+bill.perk(["borrowed_time", "left_behind", "unbreakable"])
 
 const feng = new Survivor("feng_min")
-feng.perk("alert")
-feng.perk("lithe")
-feng.perk("technician")
+feng.perk(["alert", "lithe", "technician"])
 
 const david_k = new Survivor("david_king")
-david_k.perk("dead_hard")
-david_k.perk("were_gonna_live_forever")
-david_k.perk("no_mither")
+david_k.perk(["dead_hard", "were_gonna_live_forever", "no_mither"])
 
 const quentin = new Survivor("quentin_smith")
-quentin.perk("pharmacy")
-quentin.perk("vigil")
-quentin.perk("wake_up")
+quentin.perk(["pharmacy", "vigil", "wake_up"])
 
 const david_t = new Survivor("david_tapp")
-david_t.perk("detectives_hunch")
-david_t.perk("stake_out")
-david_t.perk("tenacity")
+david_t.perk(["detectives_hunch", "stake_out", "tenacity"])
 
 const kate = new Survivor("kate_denson")
-kate.perk("boil_over")
-kate.perk("windows_of_opportunity")
-kate.perk("dance_with_me")
+kate.perk(["boil_over", "windows_of_opportunity", "dance_with_me"])
 
 const adam = new Survivor("adam_francis")
-adam.perk("autodidact")
-adam.perk("deliverance")
-adam.perk("diversion")
+adam.perk(["autodidact", "deliverance", "diversion"])
 
 const jeff = new Survivor("jeff_johansen")
-jeff.perk("aftercare")
-jeff.perk("breakdown")
-jeff.perk("distortion")
+jeff.perk(["aftercare", "breakdown", "distortion"])
 
 const jane = new Survivor("jane_romero")
-jane.perk("head_on")
-jane.perk("poised")
-jane.perk("solidarity")
+jane.perk(["head_on", "poised", "solidarity"])
 
 const ash = new Survivor("ash_williams")
-ash.perk("buckle_up")
-ash.perk("flip_flop")
-ash.perk("mettle_of_man")
+ash.perk(["buckle_up", "flip_flop", "mettle_of_man"])
 
 const nancy = new Survivor("nancy_wheeler")
-nancy.perk("better_together")
-nancy.perk("fixated")
-nancy.perk("inner_strength")
+nancy.perk(["better_together", "fixated", "inner_strength"])
 
 const steve = new Survivor("steve_harrington")
-steve.perk("babysitter")
-steve.perk("camaraderie")
-steve.perk("second_wind")
+steve.perk(["babysitter", "camaraderie", "second_wind"])
 
 const yui = new Survivor("yui_kimura")
-yui.perk("any_means_necessary")
-yui.perk("breakout")
-yui.perk("lucky_break")
+yui.perk(["any_means_necessary", "breakout", "lucky_break"])
 
 const zarina = new Survivor("zarina_kassir")
-zarina.perk("for_the_people")
-zarina.perk("off_the_record")
-zarina.perk("red_herring")
+zarina.perk(["for_the_people", "off_the_record", "red_herring"])
 
 const cheryl = new Survivor("cheryl_mason")
-cheryl.perk("blood_pact")
-cheryl.perk("repressed_alliance")
-cheryl.perk("soul_guard")
+cheryl.perk(["blood_pact", "repressed_alliance", "soul_guard"])
 
 const felix = new Survivor("felix_richter")
-felix.perk("built_to_last")
-felix.perk("desperate_measures")
-felix.perk("visionary")
+felix.perk(["built_to_last", "desperate_measures", "visionary"])
 
 const elodie = new Survivor("elodie_rakoto")
-elodie.perk("appraisal")
-elodie.perk("deception")
-elodie.perk("power_struggle")
+elodie.perk(["appraisal", "deception", "power_struggle"])
 
 const yun = new Survivor("yun_jin_lee")
-yun.perk("fast_track")
-yun.perk("self_preservation")
-yun.perk("smash_hit")
+yun.perk(["fast_track", "self_preservation", "smash_hit"])
 
 const jill = new Survivor("jill_valentine")
-jill.perk("blast_mine")
-jill.perk("counterforce")
-jill.perk("resurgence")
+jill.perk(["blast_mine", "counterforce", "resurgence"])
 
 const leon = new Survivor("leon_scott_kennedy")
-leon.perk("bite_the_bullet")
-leon.perk("flashbang")
-leon.perk("rookie_spirit")
+leon.perk(["bite_the_bullet", "flashbang", "rookie_spirit"])
 
 const mikaela = new Survivor("mikaela_reid")
-mikaela.perk("boon_circle_of_healing")
-mikaela.perk("boon_shadow_step")
-mikaela.perk("clairvoyance")
+mikaela.perk(["boon_circle_of_healing", "boon_shadow_step", "clairvoyance"])
 
 const jonah = new Survivor("jonah_vasquez")
-jonah.perk("boon_exponential")
-jonah.perk("corrective_action")
-jonah.perk("overcome")
+jonah.perk(["boon_exponential", "corrective_action", "overcome"])
 
 const yoichi = new Survivor("yoichi_asakawa")
-yoichi.perk("boon_dark_theory")
-yoichi.perk("empathic_connection")
-yoichi.perk("parental_guidance")
+yoichi.perk(["boon_dark_theory", "empathic_connection", "parental_guidance"])
 
 const haddie = new Survivor("haddie_kaur")
-haddie.perk("inner_focus")
-haddie.perk("overzealous")
-haddie.perk("residual_manifest")
+haddie.perk(["inner_focus", "overzealous", "residual_manifest"])
 
 const ada = new Survivor("ada_wong")
-ada.perk("low_profile")
-ada.perk("reactive_healing")
-ada.perk("wiretap")
+ada.perk(["low_profile", "reactive_healing", "wiretap"])
 
 const rebecca = new Survivor("rebecca_chambers")
-rebecca.perk("better_than_new")
-rebecca.perk("hyperfocus")
-rebecca.perk("reassurance")
+rebecca.perk(["better_than_new","hyperfocus", "reassurance"])
 
 const vittorio = new Survivor("vittorio_toscano")
-vittorio.perk("fogwise")
-vittorio.perk("potential_energy")
-vittorio.perk("quick_gambit")
+vittorio.perk(["fogwise", "potential_energy", "quick_gambit"])
 
 const thalita = new Survivor("thalita_lyra")
-thalita.perk("cut_loose")
-thalita.perk("friendly_competition")
-thalita.perk("teamwork_power_of_two")
+thalita.perk(["cut_loose", "friendly_competition", "teamwork_power_of_two"])
 
 const renato = new Survivor("renato_lyra")
-renato.perk("background_player")
-renato.perk("blood_rush")
-renato.perk("teamwork_collective_stealth")
-
+renato.perk(["background_player", "blood_rush", "teamwork_collective_stealth"])
 
 const gabriel = new Survivor("gabriel_soma")
-gabriel.perk("made_for_this")
-gabriel.perk("scavenger")
-gabriel.perk("troubleshooter")
+gabriel.perk(["made_for_this", "scavenger", "troubleshooter"])
 
 const nicolas = new Survivor("nicolas_cage")
-nicolas.perk("dramaturgy")
-nicolas.perk("plot_twist")
-nicolas.perk("scene_partner")
+nicolas.perk(["dramaturgy", "plot_twist", "scene_partner"])
 
 const ellen = new Survivor("ellen_ripley")
-ellen.perk("chemical_trap")
-ellen.perk("light_footed")
-ellen.perk("lucky_star")
+ellen.perk(["chemical_trap", "light_footed", "lucky_star"])
 
 const alan = new Survivor("alan_wake")
-alan.perk("boon_illumination")
-alan.perk("champion_of_light")
-alan.perk("deadline")
-
+alan.perk(["boon_illumination", "champion_of_light", "deadline"])
 
 const sable = new Survivor("sable_ward")
-sable.perk("invocation_weaving_spiders")
-sable.perk("strength_in_shadows")
-sable.perk("wicked")
+sable.perk(["invocation_weaving_spiders", "strength_in_shadows", "wicked"])
 
 const troupe = new Survivor("the_troupe")
-troupe.perk("bardic_inspiration")
-troupe.perk("mirrored_illusion")
-troupe.perk("still_sight")
+troupe.perk(["bardic_inspiration", "mirrored_illusion", "still_sight"])
 
 const lara = new Survivor("lara_croft")
-lara.perk("finesse")
-lara.perk("hardened")
-lara.perk("specialist")
+lara.perk(["finesse", "hardened", "specialist"])
 
 const trevor = new Survivor("trevor_belmont")
-trevor.perk("exultation")
-trevor.perk("eyes_of_belmont")
-trevor.perk("moment_of_glory")
+trevor.perk(["exultation", "eyes_of_belmont", "moment_of_glory"])
 
 const taurie = new Survivor("taurie_cain")
-taurie.perk("clean_break")
-taurie.perk("invocation_treacherous_crows")
-taurie.perk("shoulder_the_burden")
+taurie.perk(["clean_break", "invocation_treacherous_crows", "shoulder_the_burden"])
 
 // template for characters 
 // const adam = new Survivor("adam_francis")
@@ -454,4 +397,36 @@ window.onload = () => {
     Survivor.all_survivors.forEach((e) => {
 		e.addToSidebar()
 	})
+}
+
+
+
+document.getElementsByClassName("bottom")[0].querySelector("span").addEventListener("click", (e) => {
+	parent = document.getElementsByClassName("bottom")[0]
+
+	if (s_active) {
+		parent.querySelector("img").style.transform = "rotate(0deg)";
+		parent.style.height = "auto";
+		parent.querySelector("main").style.display = "none";	
+	}
+	else {
+		parent.querySelector("img").style.transform = "rotate(180deg)"
+		parent.style.height = "50vh"
+		parent.querySelector("main").style.display = "block";	
+	}
+
+	s_active = !s_active;
+})
+
+function randomCharToggle(element) {
+
+	if(!s_randChar) {
+		document.getElementsByClassName("char-holder")[0].style.display = "flex";
+	}
+	else {
+		document.getElementsByClassName("char-holder")[0].style.display = "none";
+	}
+
+	s_randChar = !s_randChar;
+	element.nextElementSibling.innerHTML = s_randChar;
 }
