@@ -385,17 +385,17 @@ trevor.perk(["exultation", "eyes_of_belmont", "moment_of_glory"])
 const taurie = new Survivor("taurie_cain")
 taurie.perk(["clean_break", "invocation_treacherous_crows", "shoulder_the_burden"])
 
-// template for characters 
-// const adam = new Survivor("adam_francis")
-// adam.perk("")
-// adam.perk("")
-// adam.perk("")
+
 
 window.onload = () => {
 	addRandomOnInit();
 
     Survivor.all_survivors.forEach((e) => {
 		e.addToSidebar()
+	})
+
+	Perk.all_perks.forEach((e) => {
+		e.add();
 	})
 }
 
